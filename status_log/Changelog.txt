@@ -1,0 +1,10 @@
+1.12 - allow specification of csv and js output files via -csv-filename and -js-filename flags
+     - HTML output now includes text pushing users to use the KB and README.txt
+     - HTML output now contains comments indicating runtime options
+     - add TotalLd as better representation of total CPU usage
+       default graphs now use this instead of CPULd
+     - CSV output is no longer written to STDOUT - must be via filehandle
+     - code now does basic checking for input file validity
+     - fixed basic issue with small datasets causing lines to obviously overrun graph borders
+1.11 - first graphing version pushed to support site
+
