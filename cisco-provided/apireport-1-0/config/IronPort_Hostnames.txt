@@ -1,0 +1,14 @@
+#
+# host list:
+#
+#     list of IronPort appliances running
+#     AsyncOS 5.0 or above.
+#
+#     see commented example for syntax.
+#
+
+#mail.ironport.com
+
+example1.com
+example2.com
+

@@ -1,0 +1,42 @@
+Delivery Log Utilties: Version DLOG_PARSING_TOOLS_1_4
+=====================================================
+
+# Copyright (C) 2002, IronPort Systems.  All rights reserved.
+# $Revision: 1.3 $
+
+This directory contains C, perl and python code to parse and display
+IronPort delivery logs. The delivery log format is a stateless, binary
+format for providing delivery and hard bounce information about messages
+sent through the IronPort A-series systems.
+
+c
+------
+ Running 'make' in this directory will compile:
+   dlog_csv   - convert delivery logs to comma separated lists
+   dlog_ascii - convert delivery logs to ascii
+   dlog_xml   - convert delivery logs to XML
+
+perl
+------
+   dlog_csv.pl   - convert delivery logs to comma separated lists
+   dlog_ascii.pl - convert delivery logs to ascii
+   dlog_xml.pl   - convert delivery logs to XML
+
+python
+------
+   dlog_to_xml.py - convert delivery logs to XML
+
+
+Note on non-printable characters in delivery-logs (for C and perl only):
+--------------------------------------------------
+In some cases the binary logs have data which cannot be stored in a
+valid XML attribute.  For instance the email address:
+     "NULL NULL \x04 \x07 test14 NULL \x1B @test_host.com"
+may not be shoved into an XML attribute. In these cases, the fields
+are converted into a valid format.
+
+For XML files I currently use a MIME-like base64 encoding, and
+for the ASCII utilities I use octal escape sequences.
+
+   ASCII utils: \000\000\004\007test14\000\033 
+   XML utils:   =?ascii?B?[base64 encoding]?=

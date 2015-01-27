@@ -1,0 +1,62 @@
+# GMT_OFFSET:
+#
+#    offset of the timezone to be
+#    used when calculating "days",
+#    "months", etc.
+#
+GMT_OFFSET=-8
+
+# REPORT_DIR:
+#
+#    output pathname for reports
+#    relative to the base directory
+#    containing the script
+#
+REPORT_DIR=output
+
+# ESA_LOGIN:
+#
+#    guest account (or greater) name
+#
+ESA_LOGIN=admin
+
+# ESA_PASSWORD:
+#
+#    password for ESA_LOGIN account *
+#
+#  * weird characters increase the
+#    liklihood of problems.  try not
+#    to use \ ' or " if possible.
+#
+ESA_PASSWORD=ironport
+
+# PROTOCOL:
+#
+#    http or https
+#
+PROTOCOL=http
+
+# GUI_PORT:
+#
+#    the http/https port number *
+#
+#  * in the case of 80 or 443,
+#    MAKE SURE THIS MATCHES THE
+#    PROTOCOL LISTED ABOVE!
+#
+#     http  = 80  (by default)
+#     https = 443 (by default)
+#
+GUI_PORT=80
+
+# TEMP_CSV:
+#
+#    temporary relative/path/filename
+#    for storing downloaded csv data *
+#
+#  * shouldn't really matter unless
+#    permissions are restricted, or
+#    you're _really_ low on disk
+#    space!
+#
+TEMP_CSV=tmp/data.csv

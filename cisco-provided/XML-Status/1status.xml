@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+
+
+
+
+<status build="phoebe 5.1.0-314" hostname="devlin.run" timestamp="20070913180811">
+  <birth_time timestamp="20070801113133 (43d 6h 36m 38s)"/>
+  <last_counter_reset timestamp=""/>
+  <system status="online" />
+  <oldest_message secs="0" mid="0" />
+  <features>
+    <feature name="IronPort Anti-Spam" time_remaining="-45580" />
+    <feature name="Receiving" time_remaining="1753199" />
+    <feature name="Sophos" time_remaining="742353" />
+  </features>
+  <counters>
+    <counter name="inj_msgs"
+        reset="23"
+        uptime="23"
+        lifetime="23" />
+    <counter name="inj_recips"
+        reset="23"
+        uptime="23"
+        lifetime="23" />
+    <counter name="gen_bounce_recips"
+        reset="1"
+        uptime="1"
+        lifetime="1" />
+    <counter name="rejected_recips"
+        reset="0"
+        uptime="0"
+        lifetime="0" />
+    <counter name="dropped_msgs"
+        reset="0"
+        uptime="0"
+        lifetime="0" />
+    <counter name="soft_bounced_evts"
+        reset="0"
+        uptime="0"
+        lifetime="0" />
+    <counter name="completed_recips"
+        reset="23"
+        uptime="23"
+        lifetime="23" />
+    <counter name="hard_bounced_recips"
+        reset="2"
+        uptime="2"
+        lifetime="2" />
+    <counter name="dns_hard_bounced_recips"
+        reset="1"
+        uptime="1"
+        lifetime="1" />
+    <counter name="5xx_hard_bounced_recips"
+        reset="1"
+        uptime="1"
+        lifetime="1" />
+    <counter name="filter_hard_bounced_recips"
+        reset="0"
+        uptime="0"
+        lifetime="0" />
+    <counter name="expired_hard_bounced_recips"
+        reset="0"
+        uptime="0"
+        lifetime="0" />
+    <counter name="other_hard_bounced_recips"
+        reset="0"
+        uptime="0"
+        lifetime="0" />
+    <counter name="delivered_recips"
+        reset="20"
+        uptime="20"
+        lifetime="20" />
+    <counter name="deleted_recips"
+        reset="1"
+        uptime="1"
+        lifetime="1" />
+    <counter name="global_unsub_hits"
+        reset="0"
+        uptime="0"
+        lifetime="0" />
+  </counters>
+  <current_ids
+    message_id="25"
+    injection_conn_id="26"
+    delivery_conn_id="20" />
+  <rates>
+    <rate name="inj_msgs"
+      last_1_min="0"
+      last_5_min="0"
+      last_15_min="0" />
+    <rate name="inj_recips"
+      last_1_min="0"
+      last_5_min="0"
+      last_15_min="0" />
+    <rate name="soft_bounced_evts"
+      last_1_min="0"
+      last_5_min="0"
+      last_15_min="0" />
+    <rate name="completed_recips"
+      last_1_min="0"
+      last_5_min="0"
+      last_15_min="0" />
+    <rate name="hard_bounced_recips"
+      last_1_min="0"
+      last_5_min="0"
+      last_15_min="0" />
+    <rate name="delivered_recips"
+      last_1_min="0"
+      last_5_min="0"
+      last_15_min="0" />
+  </rates>
+  <gauges>
+    <gauge name="ram_utilization" current="1" />
+    <gauge name="total_utilization" current="0" />
+    <gauge name="cpu_utilization" current="0" />
+    <gauge name="av_utilization" current="0" />
+    <gauge name="case_utilization" current="0" />
+    <gauge name="bm_utilization" current="0" />
+    <gauge name="disk_utilization" current="0" />
+    <gauge name="resource_conservation" current="0" />
+    <gauge name="log_used" current="5" />
+    <gauge name="log_available" current="17G" />
+    <gauge name="conn_in" current="0" />
+    <gauge name="conn_out" current="0" />
+    <gauge name="active_recips" current="0" />
+    <gauge name="unattempted_recips" current="0" />
+    <gauge name="attempted_recips" current="0" />
+    <gauge name="msgs_in_work_queue" current="0" />
+    <gauge name="dests_in_memory" current="2" />
+    <gauge name="kbytes_used" current="0" />
+    <gauge name="kbytes_free" current="8388608" />
+    <gauge name="msgs_in_quarantine" current="0" />
+    <gauge name="kbytes_in_quarantine" current="0" />
+    <gauge name="log_used" current="5" />
+  </gauges>
+</status>

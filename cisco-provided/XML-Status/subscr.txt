@@ -1,0 +1,18 @@
+# this is a comment
+# the subscription file contains a list of admins to alert and the conditions for alerts
+#    one destination email address per line
+#
+# the format is 
+# <email>:<full name>:gauge:low:high:gauge2:low:high:
+# with any number of gauges. valid gauge names:
+# cpu, ram, disk, conn_in, conn_out, active_recips,
+# unattempted_recips, attempted_recips, msgs_in_work_queue,
+# dests_in_memory, kbytes_used, kbytes_free
+#
+# the following counters may be queried (the values will be compared
+#   against the 'reset' values of the counters):
+# inj_msgs, inj_recips, delivered_recips, deleted_recips, inj_msgs
+#
+# note that a trailing ":" is required on each line
+cporter@ironport.com:Chris Porter:cpu:5:100:ram:2:100:
+cporter@ironport.com:Chris Porter:msgs_in_work_queue:100:10000000:

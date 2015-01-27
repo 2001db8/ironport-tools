@@ -1,0 +1,84 @@
+#
+# Report/Chart Configuration File
+#
+
+TITLE_A=Incoming Mail
+TITLE_B=Overview
+
+#
+# REPORT_SPAN defines the date range covered
+# by the report.
+#
+#   current_day    = (roughly) the past 24 hours.
+#   current_month  = the past 30 days.
+#
+#   previous_day   = yesterday (starting 00:00)
+#   previous_month = entire month before current month 
+#
+
+#REPORT_SPAN=previous_day
+#REPORT_SPAN=previous_month
+#REPORT_SPAN=current_day
+REPORT_SPAN=current_month
+#REPORT_SPAN=custom
+
+#
+# datestamp_to & datestamp_from are IGNORED
+# for all except 'custom' report spans.
+#
+# The date must be in this format:
+#
+# "DD Mon YYYY HH24:MM:SS"
+#
+# (spaces must be replaced with "%20")
+#
+#  Example datestamps:
+#
+#    datestamp_from=2%20Dec%202006%2000:00:00
+#    datestamp_to=11%20Dec%202006%2023:59:59
+#
+
+#datestamp_from=
+#datestamp_to=
+
+#
+#  rollup sets the rollup time period
+#
+#  a value of "0" creates a single
+#  time period (necessary for pie charts)
+#
+#  a value of 86400 divides everyting by
+#  day, applying the GMT offset from the
+#  main config file before displaying
+#  the data
+#
+#  etc.
+# 
+ROLLUP=0
+
+#
+# don't change these unless you're familiar with the 5.0 API!
+#
+
+REPORT_DEF_ID=mga_overview
+SECTION=ss_1_0_1
+
+COLUMN=Stopped by Reputation Filtering
+COLUMN=Stopped as Invalid Recipients
+COLUMN=Spam Detected
+COLUMN=Virus Detected
+COLUMN=Stopped by Content Filter
+#COLUMN=Total Threat Messages:
+COLUMN=Clean Messages
+#COLUMN=Total Attempted Messages:
+
+CHART_TYPE=Pie
+GROUP=time
+EXPLODE=10
+
+WIDTH=600
+HEIGHT=400
+
+BGCOLOR=fff
+
+XML_FILE=chart00.xml

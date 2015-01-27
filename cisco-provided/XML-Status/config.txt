@@ -1,0 +1,13 @@
+# This file contains basic config options including
+# user:<username>		// username for authorization to download xml
+# pass:<password>		// corresponding password
+# smtp:<servername>		// specifies the smtp server to use when sending alerts
+# url:<xml page>		// URL to xml page. format should be "http://servername/xml/status"
+# outfile:<filename>		// filename of XML status file when processed. 'status.xml' should suffice
+#
+user:admin
+pass:ironport
+smtp:smtp.ironport.com
+url:https://devlin.run/xml/status
+outfile:status.xml
+subscr:subscr.txt

@@ -1,0 +1,55 @@
+========================================================================
+
+Delivery Log Parsing Tool Suite Release Notes
+
+Version 1.4 
+
+Document Revision 1 (February 12, 2004)
+
+The IronPort Systems Delivery Log Parsing Tool Suite provides a series of i
+programs for processing the binary delivery log files produced by the 
+Ironport Messaging Gateway(tm) appliance. The various parsing tools convert 
+Delivery Logs from binary format into XML (Extensible Markup Language),  CSV 
+(comma separated values) or ASCII text file formats. Conversion tools are 
+provided in Perl, C and Python. 
+
+This release of the delivery log parsing tools provides the following new 
+features:
+
+1) Support for the delivery logs generated from AsyncOS version 3.7.
+
+   IronPort Delivery Logs were updated in AsyncOS version 3.7
+   to include the following data:
+
+   * The IP address of the host of the incoming message. 
+   * The SMTP response code and message from recipient host. 
+
+2) Modification of the following output:
+
+   * In the dlog_xml C program and the dlog_xml.pl perl script, 
+     the values for injection time (inj_tim) and devliery time 
+     (del_time) were previously reported incorrectly. The value
+     for delivery time was being displayed as the injection time, 
+     and vice versa. This issue has been corrected in this release
+     of the tools.
+
+   * In the dlog_csv.pl perl script, the columns for injection time and 
+     delivery time have been switched to coincide with the column 
+     placement in the dlog_csv C program.
+
+   * Minor modifications of the output of the dlog_ascii.pl perl 
+     script to conform with the dlog_ascii C program.
+     
+   Note: a -B flag has been provided to allow the parsing tools to output
+   results consistent with previous versions. 
+
+3) A -version command has been added to display which version of 
+   delivery log parsing tool is being used. 
+
+
+Copyright © 2004 by IronPort Systems, Inc. All rights reserved.
+
+The IronPort logo, IronPort Systems, AsyncOS, and Messaging Gateway Appliance 
+are trademarks or registered trademarks of IronPort Systems, Inc.
+
+========================================================================

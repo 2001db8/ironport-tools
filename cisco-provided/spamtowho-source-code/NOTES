@@ -1,0 +1,167 @@
+Usages
+ The most up-to-date flags should always be available via the -help flag given to the program.
+ Common usages:
+   #basic:
+   ./spamtowho.pl -f mail.current
+   #basic, but begin collecting from time indicated
+   ./spamtowho.pl -f mail.current -t1 'Fri Jan 28 00:00:00 2004'
+   #basic, but stop collecting at time indicated
+   ./spamtowho.pl -f mail.current -t2 'Fri Feb  8 00:00:00 2004'
+   #use indicated file as well as any in indicated directory, trace messages
+   # which match 'yahoo' in the mail-from
+   ./spamtowho.pl -f mail.current -directory mail_logs -tracemailfrom yahoo
+   #See the -help output for more explanation on available flags
+   ./spamtowho.pl -d ../maildirectory -recurse -f mail.current.01.c -f mail.current.02.s -recurse -per_domain -collate-domain -collate-ip -hourly -msg-csv -htmlout longoutput.html > longoutput.txt
+
+To generate HTML format output you must use the -htmlout flag as shown in
+the examples above.
+In order for the HTML viewed to generate the JavaScript graphs, the
+referenced .js files must all be in the same directory as the viewed HTML.
+These JavaScript files are: diagram.js diagram_dom.js diagram_nav.js from
+http://www.lutanho.net/diagram/ version 3.3. (3.31 originally)
+
+Sending the program the ALRM signal causes it to output all information
+processed up to the current position, and continue. (see "man kill" on
+*nix systems)
+
+Inaccuracies
+1. Message counts may actually differ from the actual number of messages
+   injected onto the system, due to filter BCCing and the like.  In such
+   occurances the program attempts to increment any related scores such as
+   SBRS relevances, and others.
+2. For Messages generated on-system, determining the size of the message is
+   sometimes not possible.  Part of postprocessing attempts to backfill
+   these values with computed averages from the rest of the dataset.
+3. With use of -timings (extremely expensive option which does not work on
+   Windows) if a system has NTP time changes time calculations will default
+   to 0 if a result is calculated as negative.
+4. Occasionally calculated percentages in a table may not add up to 100% due
+   to rounding.
+
+Recommendations and Observations
+1. Do not execute the program on a slow system, or a system with limited RAM.
+2. Execution on over 1GB of logfiles may be VERY slow with certain expensive
+   flags which collate extensive per-ip, per-user, or per-domain statistics.
+   Completion of the run may not be possible.  Some operating systems will
+   kill such a process.
+3. Log files with consistent workqueue backup characteristics incur slower
+   processing due to the program's complete in-memory message object.
+4. Some displayed statistics sections may duplicate data found in other
+   sections.
+   e.g. some information displayed in 'Aborts' may be found in the 'Filter
+   Actions' section.
+5. This program will not work with the IronPort M-series appliance.
+6. Systems which indicate messages being delivered to an End User Quarantine
+   (EUQ): some statistical information will be shown about how many messages
+   were referred to the quarantine, and if the quarantine is *local* some
+   information may be gathered about how many were released.  However for
+   deleted messages, nothing is known - the message disappears inside of the
+   EUQ; the fact of the deletion is shown in the euq_logs log but is not shown
+   in the MGA mail logs.
+7. Pie chart of "Overall system catch-rate" - if the -HATmultiplier' flag is
+   given with a 0 value, the HAT and Rejectable numbers are extrapolated via
+   a product of the number of connections on relevant SenderGroup policies and
+   the program's runtime-derived number of recipients per successful connection.
+   By default this will map 1 rejected connection to a likely 1 rejected
+   message.
+   If connections are identified in a sendergroup named 'Blacklist' but were
+   not actually rejected, then these accumulate to the 'Rejectable' counter.
+8. Interim verdicts
+   In order to collate interim verdicts and statistics, the -interim flag must
+   be given.
+   If an interim verdict line is seen like this:
+      McAfee negative Sophos negative McAfee negative Sophos positive	   1
+   What this means is that the message was quarantined after going through the
+   AV engines the first time, and then released to go through the engines a
+   second time.  Results may be different the 2nd time around, as shown.
+
+
+Messages
+1. "Unhandled entry" - messages which appear with this text indicate entries in
+   the mail log which are not recognized by the Program.  This may be due to a
+   version change unrecognized in the current version of the Program, or it may
+   be due to strange formatting of input originally given to the MGA.
+
+2. Just as an example and for debugging reference, here is a sample of the data-
+   structure built for every message.  -debug exposes this at times.
+Data Structure format sample:
+$VAR1 = {
+          'starttimestamp' => 'Tue May  8 11:00:21 2007',
+          'interface' => 'Management',
+          'finalized_rcpts' => 1,
+          'remoteip' => '10.1.1.140',
+          'Delivery status' => 'was rewritten',
+          'AS-negative' => 1,
+          'AV-negative' => 1,
+          'size' => 43321,
+          'directionality' => 'Incoming',
+          'Message-ID' => '\'<20060224000554.GA86083@domain.com>\'',
+          'subject' => '\'TEST subject here\'',
+          'PRSA' => 'DEFAULT in the inbound table',
+          'AS' => {
+                      'CASE' => 'negative'
+          },
+          'ICID' => 63,
+          'SBRS' => 'None',
+          'sendergroup' => 'None',
+          'policy' => 'ACCEPT',
+          'rcpt_count' => 1,
+          'rcpts' => {
+                       '0' => {
+                                'resolution' => 'delivered',
+                                'rcpt_name' => 'user@domain.com'
+                                'deliverytime' => 'Tue May  8 11:00:31 2007'
+                              }
+                     },
+          'aliases' => {
+                    'user@domain.com' => '[\'user@domain.com\']'
+           },
+          'Brightmail-positive' => 1,
+          'from' => 'foo@bar.com',
+          'delivered_rcpts' => 1,
+          'MID' => 71,
+          'camefrom_MID' => 69,
+          'Delivery status' => 'from rewritten'
+        };
+
+Questions:
+Why can I find more hits for "Brightmail positive" in the logs than are
+shown by the output of this program?
+  Matches which are of messages injected on a connection which was established
+  prior to the first log file processed are ignored.  The first step in the
+  parsing is to see the connection establishment, so without that the connected
+  MIDs and results are ignored.
+
+What is meant by 'Unknown' here?
+    Messages
+      received on Unknown (old conn) 12,063
+  Answer: For any messages injected on connections logged prior to the
+  first log file given for parsing, the message can only be categorized as
+  having been injected on an 'Unknown' interface.
+
+Why doesn't my 'HAT actions' section have much information?
+  The most likely answer is: your IronPort MGA is running a version of AsyncOS
+  older than 4.5.0, and you do not have the verbose logging entry turned on.
+
+How many log files can I have this program process?
+  This will somewhat depend on the system you run the program on.  It has been
+  used with great success to process as much as 50GB of logs at a shot.
+  Other factors in the processing are things like workqueue backup.  Since
+  the processing is mostly all done in-memory until the result is returned,
+  program memory utilisation can become quite high when the log files indicate
+  a workqueue backup on the MGA - this is because the built-up message
+  objects are not removed from memory until an event is seen indicating the
+  message completion.
+  On a reasonably fast system such as a Dell 2850, a 100MB mail log file should
+  take about 40 seconds or less to process.  (no -collate or -per flags)
+  
+
+What are the most useful outputs of this program?
+  That will depend entirely on what type of information you're looking for.
+  Some of the most interesting portions of the standard report are the
+  Sizes and SBRS tables.  For import into a spreadsheet, the file given
+  by use of -minutes/-hourly/-daily is also quite valuable.
+
+What are the recommended ways to use the program?
+  Please see the 'Usages' section at the top of this file.
+
