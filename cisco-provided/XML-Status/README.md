@@ -23,5 +23,5 @@ Running the system requires a scheduler service such as cron on UNIX or Schedule
 
 ## Notes
 
-	- HTTP is supported; HTTPS is not (yet)
-	- Running the retrieve process more often than once per minute can adversely affect the performance of an IronPort appliance under heavy load
+- HTTP is supported; HTTPS is not (yet)
+- Running the retrieve process more often than once per minute can adversely affect the performance of an IronPort appliance under heavy load
