@@ -26,6 +26,7 @@ Several tools for dynamic message tracking.
 ### status_log
 Tool used to generate system statistic graphs.
 
-
+### support_comminity_findings
+Stuff found in the Cisco support community forums
 
 
